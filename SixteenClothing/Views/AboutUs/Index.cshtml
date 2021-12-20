@@ -1,0 +1,129 @@
+﻿
+@model VmAboutUs
+
+@{
+    VmBannerPartion partion = new VmBannerPartion()
+            {
+                SubHeader = Model.settings.AboutUsSubHeader,
+                Header = Model.settings.AboutUsHeader
+            };
+}
+
+<partial name = "_bannerPartial" model = "partion" />
+
+
+    <div class="best-features about-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Our Background</h2>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="right-image">
+              <img src="/assets/images/@Model.settings.AboutUsContentImg" alt="">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="left-content">
+              <h4>Who we are &amp; What we do?</h4>
+              <p>@Model.settings.AboutUsContent</p>
+              <ul class="social-icons">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="#"><i class="fa fa-behance"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="team-members">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Our Team Members</h2>
+            </div>
+          </div>
+          @for (var i = 0; i < 6; i++)
+          {
+           <div class="col-md-4">
+            <div class="team-member">
+              <div class="thumb-container">
+                <img src="/assets/images/@Model.teams[i].Img" alt="">
+                <div class="hover-effect">
+                  <div class="hover-content">
+                    <ul class="social-icons">
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="down-content">
+                <h4>@(Model.teams[i].Name + " " + Model.teams[i].Surname)</h4>
+                <span>@Model.teams[i].Speciality.Name</span>
+                <p>@Model.teams[i].Text</p>
+              </div>
+            </div>
+          </div>   
+          }
+        </div>
+      </div>
+    </div>
+
+
+    <div class="services">
+      <div class="container">
+        <div class="row">
+            @foreach (var item in Model.qualities)
+            {
+           <div class="col-md-4">
+            <div class="service-item">
+              <div class="icon">
+                <i class="fa fa-gear"></i>
+              </div>
+              <div class="down-content">
+                <h4>@item.Header</h4>
+                <p>@item.Text</p>
+                <a href="#" class="filled-button">Read More</a>
+              </div>
+            </div>
+          </div>
+            }
+        </div>
+      </div>
+    </div>
+
+
+    <div class="happy-clients">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Happy Partners</h2>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="owl-clients owl-carousel">
+               @for (var i = 0; i < 5; i++)
+                    {
+                        VmPartnerPartial partner = new VmPartnerPartial()
+                            {
+                                Logo = Model.partners[i].Logo
+                            };
+
+                            <partial name = "_partnerPartial" model = "partner" />
+                    }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
